@@ -1,4 +1,7 @@
-# interfaces [![GoDoc](https://godoc.org/github.com/rjeczalik/interfaces?status.png)](https://godoc.org/github.com/rjeczalik/interfaces) [![Build Status](https://img.shields.io/travis/rjeczalik/interfaces/master.svg)](https://travis-ci.org/rjeczalik/interfaces "linux_amd64") [![Build status](https://img.shields.io/appveyor/ci/rjeczalik/interfaces.svg)](https://ci.appveyor.com/project/rjeczalik/interfaces "windows_amd64")
+# interfaces
+
+**This is a fork of the original [rjeczalik/interfaces](https://github.com/rjeczalik/interfaces), with changes made to its specifications.**
+
 Code generation tools for Go's interfaces.
 
 Tools available in this repository:
@@ -6,13 +9,13 @@ Tools available in this repository:
 - [cmd/interfacer](#cmdinterfacer-)
 - [cmd/structer](#cmdstructer-)
 
-### cmd/interfacer [![GoDoc](https://godoc.org/github.com/rjeczalik/interfaces/cmd/interfacer?status.png)](https://godoc.org/github.com/rjeczalik/interfaces/cmd/interfacer)
+### cmd/interfacer
 
 Generates an interface for a named type.
 
 *Installation*
 ```bash
-~ $ go install github.com/rjeczalik/interfaces/cmd/interfacer@latest
+~ $ go install github.com/yuta-masano/interfaces/cmd/interfacer@latest
 ```
 
 *Usage*
@@ -25,21 +28,23 @@ Usage of interfacer:
   -all
         Include also unexported methods.
   -as string
-        Generated interface name. (default "main.Interface")
+        Generated interface name.
   -for string
-        Type to generate an interface for.
-  -o string
+        Relative path to generate an interface for.
+  -out string
         Output file. (default "-")
+  -type string
+        Target struct name.
 ```
 
 *Example*
 - generate by manually
 ```bash
-~ $ interfacer -for os.File -as mock.File
+~ $ interfacer -for os -type File -as mock.File
 ```
 - generate by go generate
 ```go
-//go:generate interfacer -for os.File -as mock.File -o file_iface.go
+//go:generate interfacer -for os -type File -as mock.File -o file_iface.go
 ```
 ```bash
 ~ $ go generate  ./...
